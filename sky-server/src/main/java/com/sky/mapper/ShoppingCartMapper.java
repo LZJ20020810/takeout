@@ -21,6 +21,7 @@ public interface ShoppingCartMapper {
      * @param shoppingCart
      */
     @Update("update shopping_cart set number = #{number} where id = #{id}")
+    @AutoFill(OperationType.UPDATE)
     void updateNumberById(ShoppingCart shoppingCart);
 
     /**
@@ -29,7 +30,6 @@ public interface ShoppingCartMapper {
      */
     @Insert("insert into shopping_cart(name,user_id,dish_id,setmeal_id,dish_flavor,number,amount,image,create_time)" +
             "values(#{name},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number},#{amount},#{image},#{createTime})")
-    @AutoFill(OperationType.INSERT)
     void insert(ShoppingCart shoppingCart);
 
     /**
@@ -44,5 +44,12 @@ public interface ShoppingCartMapper {
      * 减少购物车
      * @param shoppingCart
      */
+    @AutoFill(OperationType.UPDATE)
     void deleteShoppingCart(ShoppingCart shoppingCart);
+
+    /**
+     * 批量插入购物车数据
+     * @param shoppingCartList
+     */
+    void insertBatch(List<ShoppingCart> shoppingCartList);
 }

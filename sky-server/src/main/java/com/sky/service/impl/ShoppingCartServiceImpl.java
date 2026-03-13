@@ -67,11 +67,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 Long setmealId = shoppingCartDTO.getSetmealId();
                 if(setmealId!=null){
                     Setmeal setmeal = setmealMapper.getById(setmealId);
+                    System.out.println("setmeal:"+setmeal);
                     shoppingCart.setName(setmeal.getName());
                     shoppingCart.setImage(setmeal.getImage());
                     shoppingCart.setNumber(1);
                     shoppingCart.setAmount(setmeal.getPrice());
                     shoppingCart.setCreateTime(LocalDateTime.now());
+                    System.out.println("1111111");
                 }
 
                 shoppingCartMapper.insert(shoppingCart);
